@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { IEvent } from './shared';
 @Component({
   selector: 'events-thumbnail',
   template: `
@@ -37,7 +38,7 @@ import { Component, Input } from '@angular/core';
   ],
 })
 export class EventThumbnailComponent {
-  @Input() event: any;
+  @Input() event: IEvent;
 
   checkStartTime() {
     if (this.event && this.event.time === '8:00 am')
