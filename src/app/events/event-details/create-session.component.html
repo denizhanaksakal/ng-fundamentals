@@ -5,7 +5,7 @@
   <form
     autocomplete="off"
     [formGroup]="newSessionForm"
-    (ngSubmit)="saveSession(newSessionForm.value)"
+    (ngSubmit)="createSession(newSessionForm.value)"
   >
     <div
       class="form-group"
@@ -106,6 +106,8 @@
     >
       Save
     </button>
-    <button type="button" class="btn btn-default">Cancel</button>
+    <button type="button" class="btn btn-default" (click)="cancel()">
+      Cancel
+    </button>
   </form>
 </div>
