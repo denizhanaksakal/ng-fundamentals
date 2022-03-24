@@ -46,16 +46,39 @@
           </li>
         </ul>
       </div>
-      <form id="searchForm" class="navbar-form navbar-right">
+      <form
+        id="searchForm"
+        class="navbar-form navbar-right"
+        (ngSubmit)="searchSessions(searchTerm)"
+      >
         <div class="form-group">
           <input
             type="text"
             class="form-control"
             placeholder="Search Sessions"
+            [(ngModel)]="searchTerm"
+            name="searchTerm"
           />
         </div>
-        <button class="btn btn-default">Search</button>
+        <button class="btn btn-default" modal-trigger="searchedResults">
+          Search
+        </button>
       </form>
     </div>
   </div>
 </div>
+
+<simple-modal
+  closeOnBodyClick="false"
+  elementID="searchedResults"
+  title="Matching Sessions"
+  ><!--if closeOnBodyClick is set true, modal will close after click-->
+  <div class="list-group">
+    <a
+      class="list-group-item"
+      *ngFor="let session of foundSessions"
+      [routerLink]="['/events', session.eventId]"
+      >{{ session.name }}</a
+    >
+  </div>
+</simple-modal>
