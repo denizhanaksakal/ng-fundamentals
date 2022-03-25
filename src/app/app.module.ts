@@ -12,6 +12,9 @@ import {
   CreateSessionComponent,
   SessionListComponent,
   DurationPipe,
+  UpvoteComponent,
+  VoterService,
+  LocationValidator,
 } from './events/index';
 
 import {
@@ -49,6 +52,8 @@ let jquery = window['$'];
     SimpleModalComponent,
     ModalTriggerDirective,
     DurationPipe,
+    UpvoteComponent,
+    LocationValidator,
   ],
   providers: [
     EventService,
@@ -58,6 +63,7 @@ let jquery = window['$'];
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
     EventlistResolver,
     AuthService,
+    VoterService,
   ],
   imports: [
     BrowserModule,
