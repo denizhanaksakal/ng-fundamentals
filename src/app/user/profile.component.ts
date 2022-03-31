@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private route: Router,
+    private router: Router,
     @Inject(toastr_token) private toastr: Toastr
   ) {}
 
@@ -59,14 +59,22 @@ export class ProfileComponent implements OnInit {
 
   saveProfile(formValues) {
     if (this.profileForm.valid) {
-      this.auth.updateCurrentUser(formValues.firstName, formValues.lastName);
-      this.toastr.success('Profile saved');
-      //this.route.navigate(['events']);
+      this.auth
+        .updateCurrentUser(formValues.firstName, formValues.lastName)
+        .subscribe(() => {
+          this.toastr.success('Profile saved');
+        });
     }
   }
 
   cancel() {
-    this.route.navigate(['events']);
+    this.router.navigate(['events']);
+  }
+
+  logout() {
+    this.auth.logout().subscribe(() => {
+      this.router.navigate(['/user/login']);
+    });
   }
 
   validateFirstName(): boolean {

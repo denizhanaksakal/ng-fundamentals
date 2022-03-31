@@ -32,8 +32,8 @@ export class EventDetailsComponent {
   ) {}
 
   ngOnInit() {
-    this.route.params.forEach((params: Params) => {
-      this.event = this.eventService.getEvent(+params['id']);
+    this.route.data.forEach((data) => {
+      this.event = data['event'];
       this.addMode = false;
     });
   }
@@ -48,7 +48,13 @@ export class EventDetailsComponent {
     );
     session.id = nextId + 1;
     this.event.sessions.push(session);
-    this.eventService.updateEvent(this.event);
+    this.eventService.saveEvent(this.event).subscribe();
+    /**
+     * http endpoint is smart
+     * (post method)
+     * if saveEvent method send an event with a non-existent id, it will create new one
+     * if saveEvent method send an event with a existent id, it will update
+     */
     this.addMode = false;
   }
 

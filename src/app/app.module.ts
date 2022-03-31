@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import {
   EventsListComponent,
@@ -7,7 +8,7 @@ import {
   EventService,
   EventDetailsComponent,
   CreateEventComponent,
-  EventRouteActivator,
+  EventResolver,
   EventlistResolver,
   CreateSessionComponent,
   SessionListComponent,
@@ -59,8 +60,8 @@ let jquery = window['$'];
     EventService,
     { provide: toastr_token, useValue: toastr },
     { provide: jquery_token, useValue: jquery },
-    EventRouteActivator,
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
+    EventResolver,
     EventlistResolver,
     AuthService,
     VoterService,
@@ -70,6 +71,7 @@ let jquery = window['$'];
     RouterModule.forRoot(appRoutes),
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   bootstrap: [EventsAppComponent],
 })

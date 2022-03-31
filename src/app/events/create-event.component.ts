@@ -40,8 +40,9 @@ export class CreateEventComponent {
   }
 
   saveEvent(formValue) {
-    this.service.saveEvent(formValue);
-    this.isDirty = false;
-    this.router.navigate(['/events']);
+    this.service.saveEvent(formValue).subscribe(() => {
+      this.isDirty = false;
+      this.router.navigate(['/events']);
+    });
   }
 }
