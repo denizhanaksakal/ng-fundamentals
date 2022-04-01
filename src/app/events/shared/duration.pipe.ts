@@ -13,7 +13,7 @@ export class DurationPipe implements PipeTransform {
       case 4:
         return 'Full Day';
       default:
-        return value.toString();
+        return '' + value; //cannot read property of undefined reading toString() fix
     }
   }
 }
